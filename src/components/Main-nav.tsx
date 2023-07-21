@@ -31,6 +31,26 @@ export function MainNav({
       label: `Settings`,
       active: pathname === `/${params.storeId}/settings`,
     },
+    {
+      href: `/${params.storeId}/sizes`,
+      label: `Sizes`,
+      active: pathname === `/${params.storeId}/sizes`,
+    },
+    {
+      href: `/${params.storeId}/colors`,
+      label: `Colors`,
+      active: pathname === `/${params.storeId}/colors`,
+    },
+    {
+      href: `/${params.storeId}/products`,
+      label: `Products`,
+      active: pathname === `/${params.storeId}/products`,
+    },
+    {
+      href: `/${params.storeId}/orders`,
+      label: `Orders`,
+      active: pathname === `/${params.storeId}/orders`,
+    },
   ];
   return (
     <nav className={cn("flex items-center space-x-4 lg:space-x-6", className)}>
