@@ -11,6 +11,10 @@ export async function POST(req: Request) {
 
   let event: Stripe.Event;
 
+  console.log(
+    `🚀 ~ process.env.STRIPE_WEBHOOK_SECRET:`,
+    process.env.STRIPE_WEBHOOK_SECRETE
+  );
   try {
     event = stripe.webhooks.constructEvent(
       body,
@@ -18,6 +22,7 @@ export async function POST(req: Request) {
       process.env.STRIPE_WEBHOOK_SECRET!
     );
   } catch (error: any) {
+    console.log(`🚀 ~ error:`, error);
     return new NextResponse(`Webhook Error: ${error.message}`, { status: 400 });
   }
 
@@ -35,6 +40,7 @@ export async function POST(req: Request) {
 
   const addressString = addressComponents.filter((c) => c !== null).join(", ");
 
+  console.log(`🚀 ~ event.type:`, event.type);
   if (event.type === "checkout.session.completed") {
     const order = await prismadb.order.update({
       where: {
